@@ -1,0 +1,4 @@
+[submodule "public"]
+	path = public
+	url = https://github.com/mcrss/mcrss.tk.git
+	branch = gh-pages
