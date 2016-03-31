@@ -6,6 +6,6 @@
   <body>
     <a href="/" target="_blank" rel="noopener">new</a>
     <button onclick="history.pushState({}, '', '1')">Push</button>
-    <button onclick="window.close()">Close</button>
+    <button onclick="try {window.close()} catch (e) {console.log(e)}">Close</button>
   </body>
 </html>
