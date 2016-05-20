@@ -2,6 +2,19 @@
 <html>
   <head>
     <title>mcrss</title>
+    <script>
+      window.onload = function () {
+        function a() {
+        	try {
+        		console.log(1);
+        	} catch (e) {}
+        }
+        
+        document.body.addEventListener("click", function () {
+        	a();
+        });
+      }
+    </script>
   </head>
   <body>
     <a href="/" target="_blank" rel="noopener">new</a>
