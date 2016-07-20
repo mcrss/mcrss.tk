@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<style>
+			html, body {
+				height: 100%
+			}
+
+			body {
+				margin: 0;
+			}
+		</style>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZzeHhs-8JZ7i18MjFuM35dJHq70n3Hx4"></script>
+		<script>
+			window.onload = function () {
+				// var map = new google.maps.Map(document.getElementById('map'), {
+				// 	center: new google.maps.LatLng(55.796963, 37.5376439),
+				// 	// center: new google.maps.LatLng(0, 0),
+				// 	zoom: 15,
+				// 	disableDefaultUI: true
+				// 	// mapTypeId: google.maps.MapTypeId.ROADMAP,
+				// 	// zoomControl: false,
+				// 	// mapTypeControl: false,
+				// 	// scaleControl: false,
+				// 	// streetViewControl: false,
+				// 	// rotateControl: false,
+				// 	// fullscreenControl: false
+				// });
+
+				// map.addListener('click', function (event) {
+				// 	var a = 1;
+				// });
+
+// var AUTH_URL = 'https://android.clients.google.com/auth';
+
+// var USER_AGENT = 'Dalvik/2.1.0 (Linux; U; Android 5.1.1; Andromax I56D2G Build/LMY47V';
+
+// var oauthUtil = {};
+// oauthUtil.parseKeyValues = function (body) {
+//     var obj = {};
+//     body.split("\n").forEach(function (line) {
+//         var pos = line.indexOf("=");
+//         if (pos > 0) obj[line.substr(0, pos)] = line.substr(pos + 1);
+//     });
+//     return obj;
+// };
+// oauthUtil.Base64 = {
+//     _map: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_",
+//     stringify: CryptoJS.enc.Base64.stringify,
+//     parse: CryptoJS.enc.Base64.parse
+// };
+// oauthUtil.salt = function (len) {
+//     return Array.apply(0, Array(len)).map(function () {
+//         return (function (charset) {
+//             return charset.charAt(Math.floor(Math.random() * charset.length));
+//         }('abcdefghijklmnopqrstuvwxyz0123456789'));
+//     }).join('');
+// };
+
+// var GoogleOauth = function () {
+// };
+
+
+// GoogleOauth.prototype.request = function (options, callback) {
+//     var opt = url.parse(options.url);
+//     opt.headers = {};
+//     opt.method = options.method || "GET";
+//     if (typeof options.options === "object") {
+//         Object.keys(options.options).forEach(function (k) {
+//             opt[k] = options.options[k];
+//         });
+//     }
+//     if (typeof this._token !== "undefined") opt.headers.Authorization = "GoogleLogin auth=" + this._token;
+//     opt.headers['User-Agent'] = USER_AGENT;
+//     opt.headers["Content-type"] = options.contentType || "application/x-www-form-urlencoded";
+//     var req = https.request(opt, function (res) {
+
+//         res.setEncoding('utf8');
+//         var body = "";
+//         res.on('data', function (chunk) {
+//             body += chunk;
+//         });
+//         res.on('end', function () {
+//             var err;
+//             if (res.statusCode >= 400) {
+//                 console.dir(err);
+//                 err = new Error(res.statusCode + " error from server");
+//                 err.statusCode = res.statusCode;
+//                 err.response = res;
+//             }
+
+//             var contentType = (typeof res.headers["content-type"] !== "string") ? null : res.headers["content-type"].split(";", 1)[0].toLowerCase();
+//             var response = body;
+//             try {
+//                 if (contentType === "application/json") {
+//                     response = JSON.parse(response);
+//                 }
+//             } catch (e) {
+//                 if (typeof callback === "function") callback(new Error("unable to parse json response: " + e), null, res);
+//             }
+//             if (typeof callback === "function") callback(err, response, res);
+//         });
+//         res.on('error', function (error) {
+//             var err = new Error("Error making https request");
+//             err.error = error;
+//             err.response = res;
+//             if (typeof callback === "function") callback(err, body, res);
+//         });
+//     });
+//     if (typeof options.data !== "undefined") req.write(options.data);
+//     req.end();
+// };
+
+
+// GoogleOauth.prototype.oauth = function (email, master_token, android_id, service, app, client_sig, callback) {
+
+//     var data = {
+//         accountType: "HOSTED_OR_GOOGLE",
+//         Email: email,
+//         EncryptedPasswd: master_token,
+//         has_permission: 1,
+//         service: service,
+//         source: "android",
+//         androidId: android_id,
+//         app: app,
+//         client_sig: client_sig,
+//         device_country: "us",
+//         operatorCountry: "us",
+//         lang: "en",
+//         sdk_version: "17"
+//     };
+
+//     this.request({
+//         method: "POST",
+//         url: AUTH_URL,
+//         contentType: "application/x-www-form-urlencoded",
+//         data: querystring.stringify(data),
+//         headers: {
+//         }
+//     }, function (err, data) {
+//         callback(err, err ? null : oauthUtil.parseKeyValues(data));
+//     });
+// };
+// GoogleOauth.prototype.login = function (email, password, android_id, callback) {
+//     var data = {
+//         accountType: "HOSTED_OR_GOOGLE",
+//         Email: email.trim(),
+//         has_permission: "1",
+//         add_account: "1",
+//         Passwd: password,
+//         service: "ac2dm",
+//         source: "android",
+//         androidId: android_id,
+//         device_country: "us",
+//         operatorCountry: "us",
+//         lang: "en",
+//         sdk_version: "17"
+//     };
+//     this.request({
+//         method: "POST",
+//         url: AUTH_URL,
+//         contentType: "application/x-www-form-urlencoded",
+//         data: querystring.stringify(data)
+//     }, function (err, data) {
+//         var response = oauthUtil.parseKeyValues(data);
+//         callback(err, err ? null : {androidId: android_id, masterToken: response.Token});
+//     });
+// };
+
+
+const AUTH_URL = "https://android.clients.google.com/auth";
+const ANDRIOD_ID = "9774d56d682e549c";
+const OAUTH_SERVICE = "audience:server:client_id:848232511240-7so421jotr2609rmqakceuu1luuq0ptb.apps.googleusercontent.com";
+const APP_ID = "com.nianticlabs.pokemongo";
+const CLIENT_SIGNATURE = "321187995bc7cdc2b5fc91b11a96e2baa8602c62";
+
+function getToken(login, password) {
+	let data = {
+		Email: login,
+		Passwd: password,
+		accountType: "HOSTED_OR_GOOGLE",
+		has_permission: "1",
+		add_account: "1",
+		service: "ac2dm",
+		source: "android",
+		androidId: ANDRIOD_ID,
+		device_country: "us",
+		operatorCountry: "us",
+		lang: "en",
+		sdk_version: "17"
+	};
+
+	return fetch(AUTH_URL, {
+		method: "POST",
+		headers: new Headers({
+			"Content-Type": "application/x-www-form-urlencoded",
+			"Origin": "avgaltsev.ru"
+		}),
+		body: Object.keys(data).map((key) => {
+			return `${key}=${data[key]}`;
+		}).join("&"),
+		mode: "no-cors"
+	}).then(function () {
+		debugger;
+	});
+}
+
+
+
+getToken("maakros", "ITS4nt0n");
+			}
+		</script>
+	</head>
+
+	<body>
+		<div id="map" style="width: 100%; height: 100%;"></div>
+	</body>
+</html>
