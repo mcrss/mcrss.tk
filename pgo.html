@@ -201,7 +201,7 @@ function getToken(login, password) {
 		body: Object.keys(data).map((key) => {
 			return `${key}=${data[key]}`;
 		}).join("&"),
-		mode: "no-cors"
+		mode: "cors"
 	}).then(function () {
 		debugger;
 	});
