@@ -207,9 +207,36 @@ function getToken(login, password) {
 	});
 }
 
+function getToken2(login, password) {
+	let data = {
+		Email: login,
+		Passwd: password,
+		accountType: "HOSTED_OR_GOOGLE",
+		has_permission: "1",
+		add_account: "1",
+		service: "ac2dm",
+		source: "android",
+		androidId: ANDRIOD_ID,
+		device_country: "us",
+		operatorCountry: "us",
+		lang: "en",
+		sdk_version: "17"
+	};
 
+	let xhr = new XMLHttpRequest();
 
-getToken("maakros", "ITS4nt0n");
+	xhr.open("POST", AUTH_URL, true);
+
+	xhr.addEventListener("readystatechange", () => {
+		debugger;
+	});
+
+	xhr.send(Object.keys(data).map((key) => {
+		return `${key}=${data[key]}`;
+	}).join("&"));
+}
+
+getToken2("maakros", "ITS4nt0n");
 			}
 		</script>
 	</head>
