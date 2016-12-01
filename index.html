@@ -13,6 +13,12 @@
         document.body.addEventListener("click", function () {
         	a();
         });
+        
+        reg();
+      }
+
+      function reg() {
+        navigator.registerProtocolHandler('mailto', window.location + '?a=%s', 'qwe');
       }
     </script>
   </head>
@@ -21,6 +27,7 @@
     <button onclick="history.pushState({}, '', '1')">Push</button>
     <button onclick="try {window.close()} catch (e) {console.log(e)}">Close</button>
     <button onclick="try {open(location, '_self').close();} catch (e) {console.log(e)}">Close</button>
+    <button onclick="reg()">Reg</button>
     <a href="rtf.rtf">qwe</a>
   </body>
 </html>
